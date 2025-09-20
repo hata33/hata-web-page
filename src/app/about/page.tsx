@@ -23,11 +23,9 @@ export default function AboutPage() {
           </p>
 
           <div className="bg-white rounded-lg shadow-lg p-8">
-            <h2 className="text-2xl font-bold mb-4">秦基博</h2>
+            <h2 className="text-2xl font-bold mb-4">{t("about.profile.name")}</h2>
             <p className="text-gray-700 leading-relaxed">
-              シンガーソングライターとして、心に響くメロディと詩で多くの人々を魅了しています。
-              代表曲「ひまわりの約束」は、映画『STAND BY ME
-              ドラえもん』の主題歌として大ヒットしました。
+              {t("about.profile.bio")}
             </p>
           </div>
         </div>

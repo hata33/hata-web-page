@@ -396,7 +396,7 @@ function Scene() {
 
 export default function ThreeBackground() {
   return (
-    <div className="fixed inset-0 z-0">
+    <div className="fixed inset-0 z-0 h-screen">
       <Canvas
         camera={{ position: [0, 5, 25], fov: 60 }}
         style={{

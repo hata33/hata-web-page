@@ -106,3 +106,6 @@ SECRET_KEY=your-secret-key
 - 环境变量管理
 - CSP (Content Security Policy) 配置
 - 基于这个设计目标开始开发页面，第一步实现多语言，我希望实现日语和中文两版，先实现这个功能
+
+## 执行逻辑
+当参考文件是 prd\requirements\backlog 下面的文件，识别前缀为 [] 的内容，实现这个需求，在实现完成后将 [] 替换为 ✅

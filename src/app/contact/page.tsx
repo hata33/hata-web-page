@@ -14,8 +14,8 @@ export default function ContactPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // 这里可以添加表单提交逻辑
-    alert("メッセージが送信されました。");
+    // Add form submission logic here
+    alert(t("contact.success"));
     setFormData({ name: "", email: "", message: "" });
   };
 
