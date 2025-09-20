@@ -1,0 +1,59 @@
+{
+  "navigation": {
+    "home": "首页",
+    "about": "简介",
+    "music": "音乐作品",
+    "videos": "MV",
+    "concerts": "演唱会",
+    "news": "新闻动态",
+    "contact": "联系我们"
+  },
+  "home": {
+    "title": "秦基博",
+    "subtitle": "进入触动心灵的音乐世界",
+    "listen": "聆听音乐"
+  },
+  "about": {
+    "title": "简介",
+    "description": "歌手秦基博的个人简介"
+  },
+  "music": {
+    "title": "音乐作品",
+    "album": "专辑",
+    "single": "单曲",
+    "year": "年份",
+    "tracks": "曲目",
+    "duration": "时长"
+  },
+  "videos": {
+    "title": "MV",
+    "latest": "最新MV",
+    "all": "所有MV"
+  },
+  "concerts": {
+    "title": "演唱会",
+    "schedule": "日程",
+    "tickets": "门票",
+    "venue": "场地"
+  },
+  "news": {
+    "title": "新闻动态",
+    "latest": "最新新闻",
+    "archive": "新闻档案"
+  },
+  "contact": {
+    "title": "联系我们",
+    "name": "姓名",
+    "email": "邮箱",
+    "message": "留言",
+    "send": "发送"
+  },
+  "common": {
+    "loading": "加载中...",
+    "error": "发生错误",
+    "back": "返回",
+    "next": "下一页",
+    "previous": "上一页",
+    "close": "关闭"
+  }
+}

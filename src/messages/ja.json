@@ -1,0 +1,76 @@
+{
+  "navigation": {
+    "home": "ホーム",
+    "about": "プロフィール",
+    "music": "音楽",
+    "videos": "ビデオ",
+    "concerts": "コンサート",
+    "news": "ニュース",
+    "contact": "お問い合わせ"
+  },
+  "common": {
+    "loading": "読み込み中...",
+    "error": "エラーが発生しました",
+    "back": "戻る",
+    "next": "次へ",
+    "previous": "前へ",
+    "close": "閉じる",
+    "save": "保存",
+    "cancel": "キャンセル"
+  },
+  "home": {
+    "hero": {
+      "title": "秦基博",
+      "subtitle": "シンガーソングライター",
+      "welcome": "ようこそ"
+    },
+    "features": {
+      "latest": "最新リリース",
+      "popular": "人気曲",
+      "upcoming": "近日公開"
+    }
+  },
+  "about": {
+    "title": "プロフィール",
+    "biography": "経歴",
+    "discography": "ディスコグラフィ",
+    "awards": "受賞歴"
+  },
+  "music": {
+    "title": "音楽作品",
+    "albums": "アルバム",
+    "singles": "シングル",
+    "play": "再生",
+    "pause": "一時停止",
+    "volume": "音量"
+  },
+  "videos": {
+    "title": "ビデオ",
+    "musicVideos": "ミュージックビデオ",
+    "live": "ライブ映像",
+    "play": "再生",
+    "watch": "視聴"
+  },
+  "concerts": {
+    "title": "コンサート",
+    "schedule": "スケジュール",
+    "tickets": "チケット情報",
+    "venue": "会場",
+    "date": "日時"
+  },
+  "news": {
+    "title": "ニュース",
+    "latest": "最新ニュース",
+    "archive": "アーカイブ",
+    "readMore": "もっと読む"
+  },
+  "contact": {
+    "title": "お問い合わせ",
+    "form": {
+      "name": "お名前",
+      "email": "メールアドレス",
+      "message": "メッセージ",
+      "submit": "送信"
+    }
+  }
+}
