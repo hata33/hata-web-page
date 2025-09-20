@@ -20,7 +20,10 @@ export default function HomePage() {
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-8">
               <div className="flex flex-col">
-                <a href="/" className="text-2xl font-bold text-white hover:text-blue-200 transition-colors">
+                <a
+                  href="/"
+                  className="text-2xl font-bold text-white hover:text-blue-200 transition-colors"
+                >
                   秦基博
                 </a>
                 <span className="text-sm text-gray-300 font-light">
@@ -29,22 +32,40 @@ export default function HomePage() {
               </div>
               <nav className="hidden md:flex items-center space-x-6">
                 <LanguageLoader>
-                  <a href="/about" className="text-gray-200 hover:text-white transition-colors">
+                  <a
+                    href="/about"
+                    className="text-gray-200 hover:text-white transition-colors"
+                  >
                     {t("navigation.about")}
                   </a>
-                  <a href="/music" className="text-gray-200 hover:text-white transition-colors">
+                  <a
+                    href="/music"
+                    className="text-gray-200 hover:text-white transition-colors"
+                  >
                     {t("navigation.music")}
                   </a>
-                  <a href="/videos" className="text-gray-200 hover:text-white transition-colors">
+                  <a
+                    href="/videos"
+                    className="text-gray-200 hover:text-white transition-colors"
+                  >
                     {t("navigation.videos")}
                   </a>
-                  <a href="/concerts" className="text-gray-200 hover:text-white transition-colors">
+                  <a
+                    href="/concerts"
+                    className="text-gray-200 hover:text-white transition-colors"
+                  >
                     {t("navigation.concerts")}
                   </a>
-                  <a href="/news" className="text-gray-200 hover:text-white transition-colors">
+                  <a
+                    href="/news"
+                    className="text-gray-200 hover:text-white transition-colors"
+                  >
                     {t("navigation.news")}
                   </a>
-                  <a href="/contact" className="text-gray-200 hover:text-white transition-colors">
+                  <a
+                    href="/contact"
+                    className="text-gray-200 hover:text-white transition-colors"
+                  >
                     {t("navigation.contact")}
                   </a>
                 </LanguageLoader>
@@ -58,7 +79,9 @@ export default function HomePage() {
       {/* 主要内容 */}
       <div className="relative z-10 flex items-center justify-center min-h-screen">
         <div className="text-center px-4 pt-20">
-          <LanguageLoader fallback={<div className="text-white">加载中...</div>}>
+          <LanguageLoader
+            fallback={<div className="text-white">加载中...</div>}
+          >
             <div className="flex flex-col items-center">
               <h1 className="text-6xl md:text-8xl font-bold mb-2 bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent">
                 {t("home.title")}
@@ -80,8 +103,18 @@ export default function HomePage() {
       {/* 滚动提示 */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
         <div className="animate-bounce">
-          <svg className="w-6 h-6 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+          <svg
+            className="w-6 h-6 text-white/60"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M19 14l-7 7m0 0l-7-7m7 7V3"
+            />
           </svg>
         </div>
       </div>

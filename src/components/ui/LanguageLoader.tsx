@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { useLanguage } from '@/lib/language-context';
+import { useLanguage } from "@/lib/language-context";
 
 interface LanguageLoaderProps {
   children: React.ReactNode;

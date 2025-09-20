@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { LanguageProvider } from "@/lib/language-context";
+import { MusicProvider } from "@/lib/music-context";
+import { MusicControls } from "@/components/music/MusicControls";
+import { UserInteractionTracker } from "@/components/music/UserInteractionTracker";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -29,7 +32,12 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <LanguageProvider>
-          {children}
+          <MusicProvider>
+            <UserInteractionTracker>
+              {children}
+              <MusicControls />
+            </UserInteractionTracker>
+          </MusicProvider>
         </LanguageProvider>
       </body>
     </html>

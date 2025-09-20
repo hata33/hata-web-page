@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState } from "react";
 
-type Language = 'ja' | 'zh';
+type Language = "ja" | "zh";
 
 interface LanguageContextType {
   language: Language;
@@ -11,24 +11,26 @@ interface LanguageContextType {
   isReady: boolean;
 }
 
-const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
+const LanguageContext = createContext<LanguageContextType | undefined>(
+  undefined,
+);
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [language, setLanguageState] = useState<Language>('ja');
+  const [language, setLanguageState] = useState<Language>("ja");
   const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
     // 客户端初始化时检测语言
-    const savedLanguage = localStorage.getItem('language') as Language;
+    const savedLanguage = localStorage.getItem("language") as Language;
 
-    if (savedLanguage && (savedLanguage === 'ja' || savedLanguage === 'zh')) {
+    if (savedLanguage && (savedLanguage === "ja" || savedLanguage === "zh")) {
       setLanguageState(savedLanguage);
     } else {
       // 根据浏览器语言自动检测
       const browserLang = navigator.language.toLowerCase();
-      const detectedLanguage = browserLang.startsWith('zh') ? 'zh' : 'ja';
+      const detectedLanguage = browserLang.startsWith("zh") ? "zh" : "ja";
       setLanguageState(detectedLanguage);
-      localStorage.setItem('language', detectedLanguage);
+      localStorage.setItem("language", detectedLanguage);
     }
 
     setIsReady(true);
@@ -36,12 +38,12 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
 
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);
-    localStorage.setItem('language', lang);
+    localStorage.setItem("language", lang);
   };
 
   const t = (key: string): string => {
     try {
-      const keys = key.split('.');
+      const keys = key.split(".");
       let value: any = messages[language];
 
       for (const k of keys) {
@@ -64,7 +66,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
 export function useLanguage() {
   const context = useContext(LanguageContext);
   if (context === undefined) {
-    throw new Error('useLanguage must be used within a LanguageProvider');
+    throw new Error("useLanguage must be used within a LanguageProvider");
   }
   return context;
 }
@@ -79,16 +81,16 @@ const messages = {
       videos: "MV",
       concerts: "ライブ",
       news: "ニュース",
-      contact: "お問い合わせ"
+      contact: "お問い合わせ",
     },
     home: {
       title: "秦基博",
       subtitle: "心に響く音楽の世界へ",
-      listen: "音楽を聴く"
+      listen: "音楽を聴く",
     },
     about: {
       title: "プロフィール",
-      description: "シンガーソングライター秦基博のプロフィール"
+      description: "シンガーソングライター秦基博のプロフィール",
     },
     music: {
       title: "音楽作品",
@@ -96,30 +98,30 @@ const messages = {
       single: "シングル",
       year: "年",
       tracks: "トラック",
-      duration: "時間"
+      duration: "時間",
     },
     videos: {
       title: "MV",
       latest: "最新MV",
-      all: "すべてのMV"
+      all: "すべてのMV",
     },
     concerts: {
       title: "ライブ",
       schedule: "スケジュール",
       tickets: "チケット",
-      venue: "会場"
+      venue: "会場",
     },
     news: {
       title: "ニュース",
       latest: "最新ニュース",
-      archive: "アーカイブ"
+      archive: "アーカイブ",
     },
     contact: {
       title: "お問い合わせ",
       name: "お名前",
       email: "メールアドレス",
       message: "メッセージ",
-      send: "送信"
+      send: "送信",
     },
     common: {
       loading: "読み込み中...",
@@ -127,8 +129,8 @@ const messages = {
       back: "戻る",
       next: "次へ",
       previous: "前へ",
-      close: "閉じる"
-    }
+      close: "閉じる",
+    },
   },
   zh: {
     navigation: {
@@ -138,16 +140,16 @@ const messages = {
       videos: "MV",
       concerts: "演唱会",
       news: "新闻动态",
-      contact: "联系我们"
+      contact: "联系我们",
     },
     home: {
       title: "秦基博",
       subtitle: "进入触动心灵的音乐世界",
-      listen: "聆听音乐"
+      listen: "聆听音乐",
     },
     about: {
       title: "简介",
-      description: "歌手秦基博的个人简介"
+      description: "歌手秦基博的个人简介",
     },
     music: {
       title: "音乐作品",
@@ -155,30 +157,30 @@ const messages = {
       single: "单曲",
       year: "年份",
       tracks: "曲目",
-      duration: "时长"
+      duration: "时长",
     },
     videos: {
       title: "MV",
       latest: "最新MV",
-      all: "所有MV"
+      all: "所有MV",
     },
     concerts: {
       title: "演唱会",
       schedule: "日程",
       tickets: "门票",
-      venue: "场地"
+      venue: "场地",
     },
     news: {
       title: "新闻动态",
       latest: "最新新闻",
-      archive: "新闻档案"
+      archive: "新闻档案",
     },
     contact: {
       title: "联系我们",
       name: "姓名",
       email: "邮箱",
       message: "留言",
-      send: "发送"
+      send: "发送",
     },
     common: {
       loading: "加载中...",
@@ -186,7 +188,7 @@ const messages = {
       back: "返回",
       next: "下一页",
       previous: "上一页",
-      close: "关闭"
-    }
-  }
+      close: "关闭",
+    },
+  },
 };

@@ -1,28 +1,30 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { useLanguage } from '@/lib/language-context';
-import { LanguageSwitcher } from '@/components/ui/LanguageSwitcher';
+import { useState } from "react";
+import { useLanguage } from "@/lib/language-context";
+import { LanguageSwitcher } from "@/components/ui/LanguageSwitcher";
 
 export default function ContactPage() {
   const { t } = useLanguage();
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
+    name: "",
+    email: "",
+    message: "",
   });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // 这里可以添加表单提交逻辑
-    alert('メッセージが送信されました。');
-    setFormData({ name: '', email: '', message: '' });
+    alert("メッセージが送信されました。");
+    setFormData({ name: "", email: "", message: "" });
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -36,14 +38,17 @@ export default function ContactPage() {
 
         <div className="max-w-2xl mx-auto">
           <h1 className="text-4xl md:text-6xl font-bold mb-12 text-center">
-            {t('contact.title')}
+            {t("contact.title")}
           </h1>
 
           <div className="bg-white rounded-lg shadow-lg p-8">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                  {t('contact.name')}
+                <label
+                  htmlFor="name"
+                  className="block text-sm font-medium text-gray-700 mb-2"
+                >
+                  {t("contact.name")}
                 </label>
                 <input
                   type="text"
@@ -57,8 +62,11 @@ export default function ContactPage() {
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                  {t('contact.email')}
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium text-gray-700 mb-2"
+                >
+                  {t("contact.email")}
                 </label>
                 <input
                   type="email"
@@ -72,8 +80,11 @@ export default function ContactPage() {
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                  {t('contact.message')}
+                <label
+                  htmlFor="message"
+                  className="block text-sm font-medium text-gray-700 mb-2"
+                >
+                  {t("contact.message")}
                 </label>
                 <textarea
                   id="message"
@@ -90,7 +101,7 @@ export default function ContactPage() {
                 type="submit"
                 className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
               >
-                {t('contact.send')}
+                {t("contact.send")}
               </button>
             </form>
           </div>
