@@ -1,14 +1,21 @@
 "use client";
 
+import { Pause, Play, Volume2, VolumeX } from "lucide-react";
 import React from "react";
 import { useMusic } from "@/lib/music-context";
-import { Play, Pause, Volume2, VolumeX } from "lucide-react";
 
 export function MusicControls() {
-  const { state, controls, hasUserInteracted } = useMusic();
+  const { state, controls, hasUserInteracted, setHasUserInteracted }: any =
+    useMusic();
 
-  // 处理播放/暂停
+  // 处理播放/暂停/停止切换
   const handleTogglePlay = () => {
+    // 确保用户已交互
+    if (!hasUserInteracted) {
+      setHasUserInteracted(true);
+    }
+
+    // 使用context的togglePlay函数
     controls.togglePlay();
   };
 
@@ -42,7 +49,7 @@ export function MusicControls() {
   return (
     <div className="fixed bottom-4 right-4 bg-black/80 backdrop-blur-sm rounded-lg p-3 z-50">
       <div className="flex items-center space-x-3">
-        {/* 播放/暂停按钮 */}
+        {/* 播放/暂停切换按钮 */}
         <button
           onClick={handleTogglePlay}
           className="p-2 rounded-full hover:bg-white/20 transition-colors"

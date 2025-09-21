@@ -68,6 +68,7 @@ export function MusicProvider({ children }: { children: ReactNode }) {
       setState((prev) => ({ ...prev, isPlaying: false }));
     };
 
+    
     const handleEnded = () => {
       // 循环播放
       audio.currentTime = 0;
@@ -100,12 +101,27 @@ export function MusicProvider({ children }: { children: ReactNode }) {
     }
   }, [state.volume, state.isMuted]);
 
-  // 用户交互后尝试自动播放
+  // 音频元素初始化
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (audio) {
+      setState(prev => ({
+        ...prev,
+        isPlaying: !audio.paused
+      }));
+    }
+  }, []);
+
+  // 用户交互后尝试自动播放（仅在首次交互时播放）
   useEffect(() => {
     if (hasUserInteracted && audioRef.current && !state.isPlaying) {
-      audioRef.current.play().catch(console.error);
+      const audio = audioRef.current;
+      // 检查是否是首次交互（音频从未播放过）
+      if (audio.currentTime === 0) {
+        audio.play().catch(console.error);
+      }
     }
-  }, [hasUserInteracted, state.isPlaying]);
+  }, [hasUserInteracted]);
 
   const controls: MusicControls = {
     play: () => {

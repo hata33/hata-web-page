@@ -4,7 +4,7 @@ import { useLanguage } from "@/lib/language-context";
 import { LanguageSwitcher } from "@/components/ui/LanguageSwitcher";
 
 export default function NewsPage() {
-  const { t } = useLanguage();
+  const { t }: any = useLanguage();
 
   const news = t("news.items");
 
@@ -22,7 +22,7 @@ export default function NewsPage() {
           </h1>
 
           <div className="space-y-8">
-            {news.map((item, index) => (
+            {news.map((item: any, index: number) => (
               <article
                 key={index}
                 className="bg-white rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow"

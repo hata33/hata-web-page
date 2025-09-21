@@ -10,29 +10,30 @@
 - **Three.js** & **React Three Fiber** (3D效果)
 - **Zustand** & **TanStack Query** (状态管理)
 - **Biome** & **Husky** (开发工具)
+- **pnpm** (包管理器)
 
 ## 开发命令
 ```bash
 # 安装依赖
-npm install
+pnpm install
 
 # 开发服务器
-npm run dev
+pnpm run dev
 
 # 构建项目
-npm run build
+pnpm run build
 
 # 启动生产服务器
-npm start
+pnpm start
 
 # 代码检查
-npm run lint
+pnpm run lint
 
 # 类型检查
-npm run type-check
+pnpm run type-check
 
 # 代码格式化
-npm run format
+pnpm run format
 ```
 
 ## 项目结构

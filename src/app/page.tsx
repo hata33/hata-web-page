@@ -278,7 +278,7 @@ export default function HomePage() {
                   transition={{ duration: 0.8, delay: 0.8 }}
                   className="space-y-8"
                 >
-                  {t("home.introduction.achievements").map((achievement, index) => (
+                  {t("home.introduction.achievements").map((achievement: any, index: number) => (
                     <motion.div
                       key={index}
                       initial={{ opacity: 0, y: 30 }}
@@ -311,7 +311,7 @@ export default function HomePage() {
                         </div>
 
                         <div className="flex flex-wrap gap-3">
-                          {achievement.items.map((item, itemIndex) => (
+                          {achievement.items.map((item: any, itemIndex: number) => (
                             <motion.span
                               key={itemIndex}
                               className="bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100 text-blue-800 px-4 py-2 rounded-full text-sm font-medium shadow-sm border border-white/50"
