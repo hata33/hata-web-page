@@ -1,27 +1,36 @@
 "use client";
 
-import { Navigation } from "@/components/ui/Navigation";
-import { LanguageSwitcher } from "@/components/ui/LanguageSwitcher";
-import { LanguageLoader } from "@/components/ui/LanguageLoader";
-import ThreeBackground from "@/components/three/ThreeBackground";
-import { useLanguage } from "@/lib/language-context";
-import { motion, AnimatePresence } from "framer-motion";
-import { useScrollDirection } from "@/hooks/useScrollDirection";
+import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import GuitarViewer from "@/components/three/GuitarViewer";
+import ThreeBackground from "@/components/three/ThreeBackground";
+import { LanguageLoader } from "@/components/ui/LanguageLoader";
+import { LanguageSwitcher } from "@/components/ui/LanguageSwitcher";
+import { Navigation } from "@/components/ui/Navigation";
+import { useScrollDirection } from "@/hooks/useScrollDirection";
+import { useLanguage } from "@/lib/language-context";
 
 export default function HomePage() {
   const { t } = useLanguage();
   const { scrollDirection, scrollY } = useScrollDirection();
   const [showSecondSection, setShowSecondSection] = useState(false);
+  const [showThirdSection, setShowThirdSection] = useState(false);
 
   useEffect(() => {
     // Show second section when user scrolls down past the first section
     const threshold = window.innerHeight * 0.3; // 30% of viewport height
+    const thirdSectionThreshold = window.innerHeight * 1.3; // 130% of viewport height
 
     if (scrollDirection === "down" && scrollY > threshold) {
       setShowSecondSection(true);
     } else if (scrollDirection === "up" && scrollY < threshold) {
       setShowSecondSection(false);
+    }
+
+    if (scrollDirection === "down" && scrollY > thirdSectionThreshold) {
+      setShowThirdSection(true);
+    } else if (scrollDirection === "up" && scrollY < thirdSectionThreshold) {
+      setShowThirdSection(false);
     }
   }, [scrollDirection, scrollY]);
 
@@ -321,6 +330,19 @@ export default function HomePage() {
             </LanguageLoader>
           </div>
         </div>
+      </motion.section>
+
+      {/* 吉他展示部分 - 第三屏 */}
+      <motion.section
+        className="relative h-screen overflow-hidden p-20"
+        initial={{ opacity: 0, y: 100 }}
+        animate={{
+          opacity: showThirdSection ? 1 : 0,
+          y: showThirdSection ? 0 : 100,
+        }}
+        transition={{ duration: 0.6, ease: "easeInOut" }}
+      >
+        <GuitarViewer />
       </motion.section>
     </div>
   );
