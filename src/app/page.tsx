@@ -32,64 +32,7 @@ export default function HomePage() {
 
       {/* 导航菜单 */}
       <div className="absolute top-0 left-0 right-0 z-30">
-        <div className="container mx-auto px-4">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center space-x-8">
-              <div className="flex flex-col">
-                <a
-                  href="/"
-                  className="text-2xl font-bold text-white hover:text-blue-200 transition-colors"
-                >
-                  秦基博
-                </a>
-                <span className="text-sm text-gray-300 font-light">
-                  Motohiro Hata
-                </span>
-              </div>
-              <nav className="hidden md:flex items-center space-x-6">
-                <LanguageLoader>
-                  <a
-                    href="/about"
-                    className="text-gray-200 hover:text-white transition-colors"
-                  >
-                    {t("navigation.about")}
-                  </a>
-                  <a
-                    href="/music"
-                    className="text-gray-200 hover:text-white transition-colors"
-                  >
-                    {t("navigation.music")}
-                  </a>
-                  <a
-                    href="/videos"
-                    className="text-gray-200 hover:text-white transition-colors"
-                  >
-                    {t("navigation.videos")}
-                  </a>
-                  <a
-                    href="/concerts"
-                    className="text-gray-200 hover:text-white transition-colors"
-                  >
-                    {t("navigation.concerts")}
-                  </a>
-                  <a
-                    href="/news"
-                    className="text-gray-200 hover:text-white transition-colors"
-                  >
-                    {t("navigation.news")}
-                  </a>
-                  <a
-                    href="/contact"
-                    className="text-gray-200 hover:text-white transition-colors"
-                  >
-                    {t("navigation.contact")}
-                  </a>
-                </LanguageLoader>
-              </nav>
-            </div>
-            <LanguageSwitcher />
-          </div>
-        </div>
+        <Navigation showLanguageSwitcher={true} transparent={true} />
       </div>
 
       {/* 首屏内容 */}
@@ -161,7 +104,7 @@ export default function HomePage() {
         initial={{ opacity: 0, y: 100 }}
         animate={{
           opacity: showSecondSection ? 1 : 0,
-          y: showSecondSection ? 0 : 100
+          y: showSecondSection ? 0 : 100,
         }}
         transition={{ duration: 0.6, ease: "easeInOut" }}
       >
@@ -194,7 +137,9 @@ export default function HomePage() {
                 <motion.h2
                   className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent"
                   initial={{ backgroundPosition: "0% 50%" }}
-                  animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
+                  animate={{
+                    backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+                  }}
                   transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
                 >
                   {t("home.introduction.title")}
@@ -220,7 +165,10 @@ export default function HomePage() {
                 >
                   <motion.div
                     className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl p-10 border border-white/20"
-                    whileHover={{ scale: 1.02, boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)" }}
+                    whileHover={{
+                      scale: 1.02,
+                      boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
+                    }}
                     transition={{ duration: 0.3 }}
                   >
                     <motion.div
@@ -256,12 +204,12 @@ export default function HomePage() {
                           className="text-2xl text-purple-400"
                           animate={{
                             y: [0, -10, 0],
-                            rotate: [0, 5, -5, 0]
+                            rotate: [0, 5, -5, 0],
                           }}
                           transition={{
                             duration: 2,
                             delay: index * 0.3,
-                            repeat: Infinity
+                            repeat: Infinity,
                           }}
                         >
                           {note}
@@ -278,61 +226,70 @@ export default function HomePage() {
                   transition={{ duration: 0.8, delay: 0.8 }}
                   className="space-y-8"
                 >
-                  {t("home.introduction.achievements").map((achievement: any, index: number) => (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, y: 30 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.6, delay: 1 + index * 0.3 }}
-                      className="group"
-                    >
+                  {t("home.introduction.achievements").map(
+                    (achievement: any, index: number) => (
                       <motion.div
-                        className="bg-gradient-to-r from-white/90 to-blue-50/80 backdrop-blur-sm rounded-2xl shadow-xl p-8 border border-white/30"
-                        whileHover={{
-                          scale: 1.03,
-                          background: "linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(219,234,254,0.9) 100%)"
-                        }}
-                        transition={{ duration: 0.3 }}
+                        key={index}
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: 1 + index * 0.3 }}
+                        className="group"
                       >
-                        <div className="flex items-center mb-4">
-                          <motion.div
-                            className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg mr-3 flex items-center justify-center"
-                            initial={{ scale: 0 }}
-                            animate={{ scale: 1 }}
-                            transition={{ duration: 0.4, delay: 1.2 + index * 0.3 }}
-                          >
-                            <span className="text-white font-bold text-sm">
-                              {index + 1}
-                            </span>
-                          </motion.div>
-                          <h4 className="text-2xl font-bold text-gray-800 group-hover:text-blue-600 transition-colors">
-                            {achievement.title}
-                          </h4>
-                        </div>
-
-                        <div className="flex flex-wrap gap-3">
-                          {achievement.items.map((item: any, itemIndex: number) => (
-                            <motion.span
-                              key={itemIndex}
-                              className="bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100 text-blue-800 px-4 py-2 rounded-full text-sm font-medium shadow-sm border border-white/50"
-                              initial={{ opacity: 0, scale: 0.8 }}
-                              animate={{ opacity: 1, scale: 1 }}
+                        <motion.div
+                          className="bg-gradient-to-r from-white/90 to-blue-50/80 backdrop-blur-sm rounded-2xl shadow-xl p-8 border border-white/30"
+                          whileHover={{
+                            scale: 1.03,
+                            background:
+                              "linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(219,234,254,0.9) 100%)",
+                          }}
+                          transition={{ duration: 0.3 }}
+                        >
+                          <div className="flex items-center mb-4">
+                            <motion.div
+                              className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg mr-3 flex items-center justify-center"
+                              initial={{ scale: 0 }}
+                              animate={{ scale: 1 }}
                               transition={{
                                 duration: 0.4,
-                                delay: 1.4 + index * 0.3 + itemIndex * 0.1
-                              }}
-                              whileHover={{
-                                scale: 1.05,
-                                background: "linear-gradient(135deg, rgb(219,234,254) 0%, rgb(233,213,255) 50%, rgb(252,231,243) 100%)"
+                                delay: 1.2 + index * 0.3,
                               }}
                             >
-                              {item}
-                            </motion.span>
-                          ))}
-                        </div>
+                              <span className="text-white font-bold text-sm">
+                                {index + 1}
+                              </span>
+                            </motion.div>
+                            <h4 className="text-2xl font-bold text-gray-800 group-hover:text-blue-600 transition-colors">
+                              {achievement.title}
+                            </h4>
+                          </div>
+
+                          <div className="flex flex-wrap gap-3">
+                            {achievement.items.map(
+                              (item: any, itemIndex: number) => (
+                                <motion.span
+                                  key={itemIndex}
+                                  className="bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100 text-blue-800 px-4 py-2 rounded-full text-sm font-medium shadow-sm border border-white/50"
+                                  initial={{ opacity: 0, scale: 0.8 }}
+                                  animate={{ opacity: 1, scale: 1 }}
+                                  transition={{
+                                    duration: 0.4,
+                                    delay: 1.4 + index * 0.3 + itemIndex * 0.1,
+                                  }}
+                                  whileHover={{
+                                    scale: 1.05,
+                                    background:
+                                      "linear-gradient(135deg, rgb(219,234,254) 0%, rgb(233,213,255) 50%, rgb(252,231,243) 100%)",
+                                  }}
+                                >
+                                  {item}
+                                </motion.span>
+                              ),
+                            )}
+                          </div>
+                        </motion.div>
                       </motion.div>
-                    </motion.div>
-                  ))}
+                    ),
+                  )}
                 </motion.div>
               </div>
 
@@ -350,12 +307,12 @@ export default function HomePage() {
                       className="w-2 h-2 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full"
                       animate={{
                         scale: [1, 1.5, 1],
-                        opacity: [0.4, 1, 0.4]
+                        opacity: [0.4, 1, 0.4],
                       }}
                       transition={{
                         duration: 2,
                         delay: index * 0.2,
-                        repeat: Infinity
+                        repeat: Infinity,
                       }}
                     />
                   ))}

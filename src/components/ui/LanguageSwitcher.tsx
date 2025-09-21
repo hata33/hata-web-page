@@ -8,7 +8,11 @@ const languages = [
   { code: "zh", name: "中文", flag: "🇨🇳" },
 ];
 
-export function LanguageSwitcher() {
+interface LanguageSwitcherProps {
+  transparent?: boolean;
+}
+
+export function LanguageSwitcher({ transparent = false }: LanguageSwitcherProps) {
   const { language, setLanguage } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -23,12 +27,18 @@ export function LanguageSwitcher() {
     <div className="relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 px-3 py-2 rounded-lg bg-white/80 hover:bg-white text-gray-800 hover:text-gray-900 transition-colors shadow-sm border border-white/30 backdrop-blur-sm"
+        className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-colors shadow-sm border backdrop-blur-sm ${
+          transparent
+            ? 'bg-black/40 hover:bg-black/60 text-white hover:text-gray-200 border-white/20'
+            : 'bg-white/80 hover:bg-white text-gray-800 hover:text-gray-900 border-white/30'
+        }`}
       >
         <span className="text-lg">{currentLanguage?.flag}</span>
-        <span className="text-sm font-medium text-gray-800">{currentLanguage?.name}</span>
+        <span className={`text-sm font-medium ${transparent ? 'text-white' : 'text-gray-800'}`}>
+          {currentLanguage?.name}
+        </span>
         <svg
-          className={`w-4 h-4 text-gray-600 transition-transform ${isOpen ? "rotate-180" : ""}`}
+          className={`w-4 h-4 transition-transform ${isOpen ? "rotate-180" : ""} ${transparent ? 'text-white' : 'text-gray-600'}`}
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"

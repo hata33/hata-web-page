@@ -68,7 +68,6 @@ export function MusicProvider({ children }: { children: ReactNode }) {
       setState((prev) => ({ ...prev, isPlaying: false }));
     };
 
-    
     const handleEnded = () => {
       // 循环播放
       audio.currentTime = 0;
@@ -105,9 +104,9 @@ export function MusicProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const audio = audioRef.current;
     if (audio) {
-      setState(prev => ({
+      setState((prev) => ({
         ...prev,
-        isPlaying: !audio.paused
+        isPlaying: !audio.paused,
       }));
     }
   }, []);
