@@ -2,6 +2,7 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import BlenderGuitarViewer from "@/components/three/BlenderGuitarViewer";
 import GuitarViewer from "@/components/three/GuitarViewer";
 import ThreeBackground from "@/components/three/ThreeBackground";
 import { LanguageLoader } from "@/components/ui/LanguageLoader";
@@ -15,11 +16,13 @@ export default function HomePage() {
   const { scrollDirection, scrollY } = useScrollDirection();
   const [showSecondSection, setShowSecondSection] = useState(false);
   const [showThirdSection, setShowThirdSection] = useState(false);
+  const [showFourthSection, setShowFourthSection] = useState(false);
 
   useEffect(() => {
-    // Show second section when user scrolls down past the first section
+    // Show sections when user scrolls down past the previous section
     const threshold = window.innerHeight * 0.3; // 30% of viewport height
     const thirdSectionThreshold = window.innerHeight * 1.3; // 130% of viewport height
+    const fourthSectionThreshold = window.innerHeight * 2.3; // 230% of viewport height
 
     if (scrollDirection === "down" && scrollY > threshold) {
       setShowSecondSection(true);
@@ -31,6 +34,12 @@ export default function HomePage() {
       setShowThirdSection(true);
     } else if (scrollDirection === "up" && scrollY < thirdSectionThreshold) {
       setShowThirdSection(false);
+    }
+
+    if (scrollDirection === "down" && scrollY > fourthSectionThreshold) {
+      setShowFourthSection(true);
+    } else if (scrollDirection === "up" && scrollY < fourthSectionThreshold) {
+      setShowFourthSection(false);
     }
   }, [scrollDirection, scrollY]);
 
@@ -343,6 +352,19 @@ export default function HomePage() {
         transition={{ duration: 0.6, ease: "easeInOut" }}
       >
         <GuitarViewer />
+      </motion.section>
+
+      {/* Blender吉他展示部分 - 第四屏 */}
+      <motion.section
+        className="relative h-screen overflow-hidden p-20"
+        initial={{ opacity: 0, y: 100 }}
+        animate={{
+          opacity: showFourthSection ? 1 : 0,
+          y: showFourthSection ? 0 : 100,
+        }}
+        transition={{ duration: 0.6, ease: "easeInOut" }}
+      >
+        <BlenderGuitarViewer />
       </motion.section>
     </div>
   );

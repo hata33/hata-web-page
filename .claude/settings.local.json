@@ -17,7 +17,8 @@
       "Bash(pnpm run type-check:*)",
       "Bash(pnpm run build:*)",
       "Bash(cat:*)",
-      "Bash(npx tsc:*)"
+      "Bash(npx tsc:*)",
+      "Bash(grep:*)"
     ],
     "deny": [],
     "ask": []
