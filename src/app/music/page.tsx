@@ -2,6 +2,7 @@
 
 import { useLanguage } from "@/lib/language-context";
 import { LanguageSwitcher } from "@/components/ui/LanguageSwitcher";
+import { BackButton } from "@/components/ui/BackButton";
 
 export default function MusicPage() {
   const { t } = useLanguage();
@@ -30,8 +31,12 @@ export default function MusicPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="container mx-auto px-4 py-16">
-        {/* 语言切换器 */}
-        <div className="absolute top-4 right-4 z-20">
+        {/* 顶部栏 */}
+        <div className="flex justify-between items-center mb-8">
+          {/* 返回按钮 */}
+          <BackButton />
+
+          {/* 语言切换器 */}
           <LanguageSwitcher />
         </div>
 
