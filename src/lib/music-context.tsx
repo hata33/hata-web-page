@@ -2,11 +2,11 @@
 
 import React, {
   createContext,
+  ReactNode,
   useContext,
+  useEffect,
   useRef,
   useState,
-  useEffect,
-  ReactNode,
 } from "react";
 
 interface MusicState {

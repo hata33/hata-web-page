@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { LanguageProvider } from "@/lib/language-context";
-import { MusicProvider } from "@/lib/music-context";
 import { MusicControls } from "@/components/music/MusicControls";
 import { UserInteractionTracker } from "@/components/music/UserInteractionTracker";
+import { LanguageProvider } from "@/lib/language-context";
+import { MusicProvider } from "@/lib/music-context";
 import "./globals.css";
 
 const geistSans = Geist({

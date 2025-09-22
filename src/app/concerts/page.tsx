@@ -1,8 +1,8 @@
 "use client";
 
-import { useLanguage } from "@/lib/language-context";
-import { LanguageSwitcher } from "@/components/ui/LanguageSwitcher";
 import { BackButton } from "@/components/ui/BackButton";
+import { LanguageSwitcher } from "@/components/ui/LanguageSwitcher";
+import { useLanguage } from "@/lib/language-context";
 
 export default function ConcertsPage() {
   const { t } = useLanguage();
@@ -56,7 +56,9 @@ export default function ConcertsPage() {
               >
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between">
                   <div className="mb-4 md:mb-0">
-                    <h3 className="text-xl font-bold mb-2 line-clamp-2">{concert.venue}</h3>
+                    <h3 className="text-xl font-bold mb-2 line-clamp-2">
+                      {concert.venue}
+                    </h3>
                     <p className="text-gray-600 truncate">
                       {concert.date} • {concert.city}
                     </p>

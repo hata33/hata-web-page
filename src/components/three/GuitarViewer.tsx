@@ -86,39 +86,45 @@ function GuitarModel({
           if (child instanceof Mesh) {
             // 为吉他创建高质量的木质材质
             const guitarMaterial = new THREE.MeshStandardMaterial({
-              color: 0x8B4513, // 棕色
+              color: 0x8b4513, // 棕色
               metalness: 0.1,
               roughness: 0.8,
-              envMapIntensity: 0.5
+              envMapIntensity: 0.5,
             });
 
             // 为不同的部件创建不同的材质
-            if (child.name.toLowerCase().includes('string') ||
-                child.name.toLowerCase().includes('line')) {
+            if (
+              child.name.toLowerCase().includes("string") ||
+              child.name.toLowerCase().includes("line")
+            ) {
               // 弦的材质
               child.material = new THREE.MeshStandardMaterial({
-                color: 0xC0C0C0, // 银色
+                color: 0xc0c0c0, // 银色
                 metalness: 0.9,
                 roughness: 0.1,
-                envMapIntensity: 1.0
+                envMapIntensity: 1.0,
               });
-            } else if (child.name.toLowerCase().includes('tun') ||
-                      child.name.toLowerCase().includes('head')) {
+            } else if (
+              child.name.toLowerCase().includes("tun") ||
+              child.name.toLowerCase().includes("head")
+            ) {
               // 调音旋钮和头部的材质
               child.material = new THREE.MeshStandardMaterial({
                 color: 0x654321, // 深棕色
                 metalness: 0.3,
                 roughness: 0.6,
-                envMapIntensity: 0.6
+                envMapIntensity: 0.6,
               });
-            } else if (child.name.toLowerCase().includes('fret') ||
-                      child.name.toLowerCase().includes('neck')) {
+            } else if (
+              child.name.toLowerCase().includes("fret") ||
+              child.name.toLowerCase().includes("neck")
+            ) {
               // 指板和琴颈的材质
               child.material = new THREE.MeshStandardMaterial({
-                color: 0x4A4A4A, // 深灰色
+                color: 0x4a4a4a, // 深灰色
                 metalness: 0.0,
                 roughness: 0.9,
-                envMapIntensity: 0.3
+                envMapIntensity: 0.3,
               });
             } else {
               // 吉他主体的默认木质材质
@@ -132,7 +138,11 @@ function GuitarModel({
               const saturationVariation = (Math.random() - 0.5) * 0.1;
 
               if (child.material.color) {
-                child.material.color.offsetHSL(hueVariation, saturationVariation, 0);
+                child.material.color.offsetHSL(
+                  hueVariation,
+                  saturationVariation,
+                  0,
+                );
               }
             }
           }

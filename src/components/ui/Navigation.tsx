@@ -26,14 +26,14 @@ export function Navigation({
 
   const navItems = isReady
     ? [
-      { href: "/", label: t("navigation.home") },
-      { href: "/about", label: t("navigation.about") },
-      { href: "/music", label: t("navigation.music") },
-      { href: "/videos", label: t("navigation.videos") },
-      { href: "/concerts", label: t("navigation.concerts") },
-      { href: "/news", label: t("navigation.news") },
-      { href: "/contact", label: t("navigation.contact") },
-    ]
+        { href: "/", label: t("navigation.home") },
+        { href: "/about", label: t("navigation.about") },
+        { href: "/music", label: t("navigation.music") },
+        { href: "/videos", label: t("navigation.videos") },
+        { href: "/concerts", label: t("navigation.concerts") },
+        { href: "/news", label: t("navigation.news") },
+        { href: "/contact", label: t("navigation.contact") },
+      ]
     : [];
 
   const isActive = (href: string) => {
@@ -59,14 +59,15 @@ export function Navigation({
               <Link
                 key={item.href}
                 href={item.href}
-                className={`relative px-1 py-2 transition-colors ${isActive(item.href)
+                className={`relative px-1 py-2 transition-colors ${
+                  isActive(item.href)
                     ? transparent
                       ? "text-blue-300 font-medium"
                       : "text-blue-600 font-medium"
                     : transparent
                       ? "text-gray-200 hover:text-white"
                       : "text-gray-600 hover:text-blue-600"
-                  }`}
+                }`}
               >
                 {item.label}
                 {isActive(item.href) && (
@@ -84,13 +85,13 @@ export function Navigation({
             )}
           </div>
 
-          {/* 移动端菜单按钮 */}
-          <div className="flex md:flex items-center gap-2">
+          {/* 移动端菜单按钮和语言切换器 */}
+          <div className="flex md:hidden items-center gap-2">
             {showLanguageSwitcher && (
               <LanguageSwitcher transparent={transparent} />
             )}
             <button
-              className={`md:hidden p-2 rounded-lg transition-colors ${transparent ? "hover:bg-white/20" : "hover:bg-gray-100"}`}
+              className={`p-2 rounded-lg transition-colors ${transparent ? "hover:bg-white/20" : "hover:bg-gray-100"}`}
               onClick={() => setIsOpen(!isOpen)}
             >
               {isOpen ? (
@@ -118,14 +119,15 @@ export function Navigation({
               <Link
                 key={item.href}
                 href={item.href}
-                className={`block py-2 px-2 rounded-lg transition-colors ${isActive(item.href)
+                className={`block py-2 px-2 rounded-lg transition-colors ${
+                  isActive(item.href)
                     ? transparent
                       ? "bg-blue-600 text-white font-medium"
                       : "bg-blue-50 text-blue-600 font-medium"
                     : transparent
                       ? "text-gray-200 hover:bg-white/10"
                       : "text-gray-600 hover:bg-gray-50"
-                  }`}
+                }`}
                 onClick={() => setIsOpen(false)}
               >
                 {item.label}

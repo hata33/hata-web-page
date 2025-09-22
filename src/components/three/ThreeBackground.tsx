@@ -1,8 +1,8 @@
 // @ts-nocheck
 "use client";
 
-import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Stars } from "@react-three/drei";
+import { Canvas, useFrame } from "@react-three/fiber";
 import { useRef, useState } from "react";
 // @ts-ignore
 import * as THREE from "three";

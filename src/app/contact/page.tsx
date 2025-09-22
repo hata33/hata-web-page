@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { useLanguage } from "@/lib/language-context";
-import { LanguageSwitcher } from "@/components/ui/LanguageSwitcher";
 import { BackButton } from "@/components/ui/BackButton";
+import { LanguageSwitcher } from "@/components/ui/LanguageSwitcher";
+import { useLanguage } from "@/lib/language-context";
 
 export default function ContactPage() {
   const { t } = useLanguage();

@@ -1,8 +1,8 @@
 "use client";
 
-import { useLanguage } from "@/lib/language-context";
-import { LanguageSwitcher } from "@/components/ui/LanguageSwitcher";
 import { BackButton } from "@/components/ui/BackButton";
+import { LanguageSwitcher } from "@/components/ui/LanguageSwitcher";
+import { useLanguage } from "@/lib/language-context";
 
 export default function NewsPage() {
   const { t }: any = useLanguage();
@@ -39,7 +39,9 @@ export default function NewsPage() {
                     </div>
                   </div>
                   <div className="flex-1">
-                    <h2 className="text-2xl font-bold mb-4 line-clamp-2 text-gray-900">{item.title}</h2>
+                    <h2 className="text-2xl font-bold mb-4 line-clamp-2 text-gray-900">
+                      {item.title}
+                    </h2>
                     <p className="text-gray-600 leading-relaxed line-clamp-4">
                       {item.content}
                     </p>

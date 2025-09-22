@@ -10,7 +10,10 @@ interface BackButtonProps {
   variant?: "default" | "minimal";
 }
 
-export function BackButton({ className = "", variant = "default" }: BackButtonProps) {
+export function BackButton({
+  className = "",
+  variant = "default",
+}: BackButtonProps) {
   const router = useRouter();
   const { t } = useLanguage();
 

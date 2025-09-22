@@ -1,8 +1,8 @@
 "use client";
 
-import { useLanguage } from "@/lib/language-context";
-import { LanguageSwitcher } from "@/components/ui/LanguageSwitcher";
 import { BackButton } from "@/components/ui/BackButton";
+import { LanguageSwitcher } from "@/components/ui/LanguageSwitcher";
+import { useLanguage } from "@/lib/language-context";
 
 export default function VideosPage() {
   const { t } = useLanguage();
@@ -52,7 +52,9 @@ export default function VideosPage() {
                   </div>
                 </div>
                 <div className="p-6">
-                  <h3 className="text-xl font-bold mb-2 line-clamp-2">{video.title}</h3>
+                  <h3 className="text-xl font-bold mb-2 line-clamp-2">
+                    {video.title}
+                  </h3>
                   <p className="text-gray-600 text-sm truncate">
                     {video.year} • {video.views} {t("videos.views")}
                   </p>
