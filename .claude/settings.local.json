@@ -20,7 +20,8 @@
       "Bash(npx tsc:*)",
       "Bash(grep:*)",
       "Bash(move:*)",
-      "Bash(copy:*)"
+      "Bash(copy:*)",
+      "Bash(tree:*)"
     ],
     "deny": [],
     "ask": []
