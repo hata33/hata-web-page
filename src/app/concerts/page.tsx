@@ -4,12 +4,20 @@ import { BackButton } from "@/components/ui/BackButton";
 import { LanguageSwitcher } from "@/components/ui/LanguageSwitcher";
 import { useLanguage } from "@/lib/language-context";
 
+interface ConcertItem {
+  id: number;
+  venue: string;
+  date: string;
+  city: string;
+  status: "available" | "comingsoon" | string;
+}
+
 export default function ConcertsPage() {
   const { t } = useLanguage();
 
-  const concerts = t("concerts.items");
+  const concerts = t("concerts.items") as ConcertItem[];
 
-  const getStatusText = (status: string) => {
+  const getStatusText = (status: ConcertItem["status"]) => {
     switch (status) {
       case "available":
         return t("concerts.statusAvailable");
@@ -20,7 +28,7 @@ export default function ConcertsPage() {
     }
   };
 
-  const getStatusColor = (status: string) => {
+  const getStatusColor = (status: ConcertItem["status"]) => {
     switch (status) {
       case "available":
         return "bg-green-100 text-green-800";

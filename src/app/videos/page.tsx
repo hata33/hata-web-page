@@ -4,10 +4,18 @@ import { BackButton } from "@/components/ui/BackButton";
 import { LanguageSwitcher } from "@/components/ui/LanguageSwitcher";
 import { useLanguage } from "@/lib/language-context";
 
+interface VideoItem {
+  id: number;
+  title: string;
+  year: string;
+  views: string;
+  thumbnail: string;
+}
+
 export default function VideosPage() {
   const { t } = useLanguage();
 
-  const videos = t("videos.items");
+  const videos = t("videos.items") as VideoItem[];
 
   return (
     <div className="min-h-screen bg-gray-50">
