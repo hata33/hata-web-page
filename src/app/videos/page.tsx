@@ -7,26 +7,7 @@ import { BackButton } from "@/components/ui/BackButton";
 export default function VideosPage() {
   const { t } = useLanguage();
 
-  const videos = [
-    {
-      title: "ひまわりの約束",
-      thumbnail: "/placeholder-video.jpg",
-      views: "12M",
-      year: "2014",
-    },
-    {
-      title: "RAIN",
-      thumbnail: "/placeholder-video.jpg",
-      views: "8.5M",
-      year: "2021",
-    },
-    {
-      title: "青の光景",
-      thumbnail: "/placeholder-video.jpg",
-      views: "6.2M",
-      year: "2023",
-    },
-  ];
+  const videos = t("videos.items");
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -52,16 +33,16 @@ export default function VideosPage() {
                 className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow"
               >
                 <div className="relative">
-                  <div className="h-48 bg-gray-300 flex items-center justify-center">
-                    <div className="text-gray-500 text-center">
+                  <div className="h-48 bg-gray-200 flex items-center justify-center">
+                    <div className="text-gray-700 text-center">
                       <div className="text-4xl mb-2">🎬</div>
-                      <p className="font-medium">{video.title}</p>
+                      <p className="font-medium truncate">{video.title}</p>
                     </div>
                   </div>
                   <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
-                    <div className="bg-white rounded-full p-4">
+                    <div className="bg-blue-600 rounded-full p-4">
                       <svg
-                        className="w-8 h-8 text-gray-800"
+                        className="w-8 h-8 text-white"
                         fill="currentColor"
                         viewBox="0 0 20 20"
                       >
@@ -71,8 +52,8 @@ export default function VideosPage() {
                   </div>
                 </div>
                 <div className="p-6">
-                  <h3 className="text-xl font-bold mb-2 truncate">{video.title}</h3>
-                  <p className="text-gray-600 text-sm">
+                  <h3 className="text-xl font-bold mb-2 line-clamp-2">{video.title}</h3>
+                  <p className="text-gray-600 text-sm truncate">
                     {video.year} • {video.views} {t("videos.views")}
                   </p>
                 </div>

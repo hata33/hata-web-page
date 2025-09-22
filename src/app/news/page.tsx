@@ -30,17 +30,17 @@ export default function NewsPage() {
             {news.map((item: any, index: number) => (
               <article
                 key={index}
-                className="bg-white rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow"
+                className="bg-white rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow border border-gray-100"
               >
                 <div className="flex items-start space-x-4">
                   <div className="flex-shrink-0">
-                    <div className="bg-blue-100 text-blue-800 px-4 py-2 rounded-lg text-sm font-medium">
+                    <div className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium">
                       {item.date}
                     </div>
                   </div>
                   <div className="flex-1">
-                    <h2 className="text-2xl font-bold mb-4 line-clamp-2">{item.title}</h2>
-                    <p className="text-gray-700 leading-relaxed line-clamp-4">
+                    <h2 className="text-2xl font-bold mb-4 line-clamp-2 text-gray-900">{item.title}</h2>
+                    <p className="text-gray-600 leading-relaxed line-clamp-4">
                       {item.content}
                     </p>
                   </div>
