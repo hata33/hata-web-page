@@ -21,7 +21,9 @@
       "Bash(grep:*)",
       "Bash(move:*)",
       "Bash(copy:*)",
-      "Bash(tree:*)"
+      "Bash(tree:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
     ],
     "deny": [],
     "ask": []

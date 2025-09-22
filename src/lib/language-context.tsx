@@ -128,12 +128,15 @@ const messages = {
       title: "MV",
       latest: "最新MV",
       all: "すべてのMV",
+      views: "視聴",
     },
     concerts: {
       title: "ライブ",
       schedule: "スケジュール",
       tickets: "チケット",
       venue: "会場",
+      statusAvailable: "チケット発売中",
+      statusComingSoon: "まもなく発売",
     },
     news: {
       title: "ニュース",
@@ -228,12 +231,15 @@ const messages = {
       title: "MV",
       latest: "最新MV",
       all: "所有MV",
+      views: "播放",
     },
     concerts: {
       title: "演唱会",
       schedule: "日程",
       tickets: "门票",
       venue: "场地",
+      statusAvailable: "门票发售中",
+      statusComingSoon: "即将发售",
     },
     news: {
       title: "新闻动态",

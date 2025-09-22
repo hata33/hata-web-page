@@ -114,14 +114,14 @@ prd/
 ## 🔄 完整工作流
 
 ### 开发新需求流程
-1. **创建文档**: 在 `requirements/backlog/{module}/` 创建需求文档
+1. **创建文档**: 在 `requirements/backlog/{module}/` 创建需求文档，创建完需求文档后退出，待修改后再进行下一步
 2. **AI 识别**: 读取任务清单，创建内存 TODO，参考 Bug 知识库避免常见问题
 3. **开发执行**: 按任务执行，实时更新文档状态，记录执行日志
 4. **质量检查**: 运行类型检查、代码检查，验收标准检查
 5. **完成归档**: 移动到 `requirements/implemented/`
 
 ### 修复 Bug 流程
-1. **创建文档**: 在 `bugs/active/` 创建 Bug 文档
+1. **创建文档**: 在 `bugs/active/` 创建 Bug 文档，创建完需求文档后退出，待修改后再进行下一步
 2. **AI 分析**: 识别问题，参考知识库，分析根本原因
 3. **修复执行**: 修复问题，更新状态，记录修复过程
 4. **知识总结**: 添加到知识库，更新规避清单
@@ -166,19 +166,19 @@ prd/
 ## 📝 文档命名规范
 
 ### 需求文档命名
-- 格式: `{module}-feature-YYYYMMDD.md`
+- 格式: `feature-YYYYMMDD-{module}.md`
 - 位置: `prd/requirements/backlog/{module}/`
 
 ### Bug 文档命名
-- 格式: `{module}-bug-YYYYMMDD.md`
+- 格式: `bug-YYYYMMDD-{module}.md`
 - 位置: `prd/bugs/active/`
 
 ### 调整文档命名
-- 格式: `{module}-adjustment-YYYYMMDD.md`
+- 格式: `adjustment-YYYYMMDD-{module}.md`
 - 位置: `prd/requirements/adjustments/pending/`
 
 ### TODO 文档命名
-- 格式: `{module}-todo-YYYYMMDD.md`
+- 格式: `todo-YYYYMMDD-{module}.md`
 - 位置: `prd/todos/`
 
 ---

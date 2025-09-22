@@ -2,6 +2,7 @@
 
 import { useLanguage } from "@/lib/language-context";
 import { LanguageSwitcher } from "@/components/ui/LanguageSwitcher";
+import { BackButton } from "@/components/ui/BackButton";
 
 export default function VideosPage() {
   const { t } = useLanguage();
@@ -30,8 +31,12 @@ export default function VideosPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="container mx-auto px-4 py-16">
-        {/* 语言切换器 */}
-        <div className="absolute top-4 right-4 z-20">
+        {/* 顶部栏 */}
+        <div className="flex justify-between items-center mb-8">
+          {/* 返回按钮 */}
+          <BackButton />
+
+          {/* 语言切换器 */}
           <LanguageSwitcher />
         </div>
 
@@ -50,7 +55,7 @@ export default function VideosPage() {
                   <div className="h-48 bg-gray-300 flex items-center justify-center">
                     <div className="text-gray-500 text-center">
                       <div className="text-4xl mb-2">🎬</div>
-                      <p>{video.title}</p>
+                      <p className="font-medium">{video.title}</p>
                     </div>
                   </div>
                   <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
@@ -66,9 +71,9 @@ export default function VideosPage() {
                   </div>
                 </div>
                 <div className="p-6">
-                  <h3 className="text-xl font-bold mb-2">{video.title}</h3>
-                  <p className="text-gray-600">
-                    {video.year} • {video.views} 視聴
+                  <h3 className="text-xl font-bold mb-2 truncate">{video.title}</h3>
+                  <p className="text-gray-600 text-sm">
+                    {video.year} • {video.views} {t("videos.views")}
                   </p>
                 </div>
               </div>

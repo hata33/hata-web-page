@@ -2,6 +2,7 @@
 
 import { useLanguage } from "@/lib/language-context";
 import { LanguageSwitcher } from "@/components/ui/LanguageSwitcher";
+import { BackButton } from "@/components/ui/BackButton";
 
 export default function ConcertsPage() {
   const { t } = useLanguage();
@@ -11,27 +12,53 @@ export default function ConcertsPage() {
       date: "2024-03-15",
       venue: "東京国際フォーラム",
       city: "東京",
-      status: "チケット発売中",
+      status: "available",
     },
     {
       date: "2024-03-20",
       venue: "大阪国際会議場",
       city: "大阪",
-      status: "チケット発売中",
+      status: "available",
     },
     {
       date: "2024-04-10",
       venue: "名古屋国際会議場",
       city: "名古屋",
-      status: "まもなく発売",
+      status: "comingsoon",
     },
   ];
+
+  const getStatusText = (status: string) => {
+    switch (status) {
+      case "available":
+        return t("concerts.statusAvailable");
+      case "comingsoon":
+        return t("concerts.statusComingSoon");
+      default:
+        return status;
+    }
+  };
+
+  const getStatusColor = (status: string) => {
+    switch (status) {
+      case "available":
+        return "bg-green-100 text-green-800";
+      case "comingsoon":
+        return "bg-yellow-100 text-yellow-800";
+      default:
+        return "bg-gray-100 text-gray-800";
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="container mx-auto px-4 py-16">
-        {/* 语言切换器 */}
-        <div className="absolute top-4 right-4 z-20">
+        {/* 顶部栏 */}
+        <div className="flex justify-between items-center mb-8">
+          {/* 返回按钮 */}
+          <BackButton />
+
+          {/* 语言切换器 */}
           <LanguageSwitcher />
         </div>
 
@@ -48,20 +75,16 @@ export default function ConcertsPage() {
               >
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between">
                   <div className="mb-4 md:mb-0">
-                    <h3 className="text-xl font-bold mb-2">{concert.venue}</h3>
+                    <h3 className="text-xl font-bold mb-2 truncate">{concert.venue}</h3>
                     <p className="text-gray-600">
                       {concert.date} • {concert.city}
                     </p>
                   </div>
                   <div className="flex items-center space-x-4">
                     <span
-                      className={`px-4 py-2 rounded-full text-sm font-medium ${
-                        concert.status === "チケット発売中"
-                          ? "bg-green-100 text-green-800"
-                          : "bg-yellow-100 text-yellow-800"
-                      }`}
+                      className={`px-4 py-2 rounded-full text-sm font-medium ${getStatusColor(concert.status)}`}
                     >
-                      {concert.status}
+                      {getStatusText(concert.status)}
                     </span>
                     <button className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">
                       {t("concerts.tickets")}
