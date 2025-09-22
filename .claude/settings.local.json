@@ -18,7 +18,9 @@
       "Bash(pnpm run build:*)",
       "Bash(cat:*)",
       "Bash(npx tsc:*)",
-      "Bash(grep:*)"
+      "Bash(grep:*)",
+      "Bash(move:*)",
+      "Bash(copy:*)"
     ],
     "deny": [],
     "ask": []
