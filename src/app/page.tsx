@@ -1,47 +1,67 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import BlenderGuitarViewer from "@/components/three/BlenderGuitarViewer";
 import GuitarViewer from "@/components/three/GuitarViewer";
 import ThreeBackground from "@/components/three/ThreeBackground";
 import { LanguageLoader } from "@/components/ui/LanguageLoader";
 import { LanguageSwitcher } from "@/components/ui/LanguageSwitcher";
 import { Navigation } from "@/components/ui/Navigation";
-import { useScrollDirection } from "@/hooks/useScrollDirection";
 import { useLanguage } from "@/lib/language-context";
 
 export default function HomePage() {
   const { t } = useLanguage();
-  const { scrollDirection, scrollY } = useScrollDirection();
   const [showSecondSection, setShowSecondSection] = useState(false);
   const [showThirdSection, setShowThirdSection] = useState(false);
   const [showFourthSection, setShowFourthSection] = useState(false);
 
+  const secondSectionRef = useRef<HTMLDivElement>(null);
+  const thirdSectionRef = useRef<HTMLDivElement>(null);
+  const fourthSectionRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
-    // Show sections when user scrolls down past the previous section
-    const threshold = window.innerHeight * 0.3; // 30% of viewport height
-    const thirdSectionThreshold = window.innerHeight * 1.3; // 130% of viewport height
-    const fourthSectionThreshold = window.innerHeight * 2.3; // 230% of viewport height
+    const observerOptions = {
+      root: null,
+      rootMargin: "-10% 0px -10% 0px", // 当元素进入视口中部时触发
+      threshold: 0.1,
+    };
 
-    if (scrollDirection === "down" && scrollY > threshold) {
-      setShowSecondSection(true);
-    } else if (scrollDirection === "up" && scrollY < threshold) {
-      setShowSecondSection(false);
+    const observerCallback = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          if (entry.target === secondSectionRef.current) {
+            setShowSecondSection(true);
+          }
+          if (entry.target === thirdSectionRef.current) {
+            setShowThirdSection(true);
+          }
+          if (entry.target === fourthSectionRef.current) {
+            setShowFourthSection(true);
+          }
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(
+      observerCallback,
+      observerOptions,
+    );
+
+    if (secondSectionRef.current) {
+      observer.observe(secondSectionRef.current);
+    }
+    if (thirdSectionRef.current) {
+      observer.observe(thirdSectionRef.current);
+    }
+    if (fourthSectionRef.current) {
+      observer.observe(fourthSectionRef.current);
     }
 
-    if (scrollDirection === "down" && scrollY > thirdSectionThreshold) {
-      setShowThirdSection(true);
-    } else if (scrollDirection === "up" && scrollY < thirdSectionThreshold) {
-      setShowThirdSection(false);
-    }
-
-    if (scrollDirection === "down" && scrollY > fourthSectionThreshold) {
-      setShowFourthSection(true);
-    } else if (scrollDirection === "up" && scrollY < fourthSectionThreshold) {
-      setShowFourthSection(false);
-    }
-  }, [scrollDirection, scrollY]);
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
 
   return (
     <div className="relative">
@@ -118,13 +138,14 @@ export default function HomePage() {
 
       {/* 艺术家介绍部分 */}
       <motion.section
+        ref={secondSectionRef}
         className="relative min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 overflow-hidden"
         initial={{ opacity: 0, y: 100 }}
         animate={{
           opacity: showSecondSection ? 1 : 0,
           y: showSecondSection ? 0 : 100,
         }}
-        transition={{ duration: 0.6, ease: "easeInOut" }}
+        transition={{ duration: 0.8, ease: "easeInOut" }}
       >
         {/* 装饰性背景元素 */}
         <motion.div
@@ -343,26 +364,28 @@ export default function HomePage() {
 
       {/* 吉他展示部分 - 第三屏 */}
       <motion.section
+        ref={thirdSectionRef}
         className="relative h-screen overflow-hidden p-20"
         initial={{ opacity: 0, y: 100 }}
         animate={{
           opacity: showThirdSection ? 1 : 0,
           y: showThirdSection ? 0 : 100,
         }}
-        transition={{ duration: 0.6, ease: "easeInOut" }}
+        transition={{ duration: 0.8, ease: "easeInOut" }}
       >
         <GuitarViewer />
       </motion.section>
 
       {/* Blender吉他展示部分 - 第四屏 */}
       <motion.section
+        ref={fourthSectionRef}
         className="relative h-screen overflow-hidden p-20"
         initial={{ opacity: 0, y: 100 }}
         animate={{
           opacity: showFourthSection ? 1 : 0,
           y: showFourthSection ? 0 : 100,
         }}
-        transition={{ duration: 0.6, ease: "easeInOut" }}
+        transition={{ duration: 0.8, ease: "easeInOut" }}
       >
         <BlenderGuitarViewer />
       </motion.section>
