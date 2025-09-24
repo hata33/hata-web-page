@@ -89,7 +89,7 @@ export default function HomePage() {
           </motion.div>
         </div>
 
-        <div className="container mx-auto px-4 pt-20 lg:pl-[50%]">
+        <div className="container mx-auto px-4 lg:pl-[45%] lg:pr-[10%]">
           {/* 桌面端文字内容 */}
           <motion.div
             className="hidden lg:block text-left"
@@ -102,7 +102,7 @@ export default function HomePage() {
             >
               <div className="flex flex-col items-start">
                 <motion.h1
-                  className="text-6xl md:text-8xl font-bold mb-2 bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent"
+                  className="text-5xl md:text-7xl lg:text-8xl font-bold mb-2 bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent whitespace-nowrap"
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8 }}
@@ -110,7 +110,7 @@ export default function HomePage() {
                   {t("home.title")}
                 </motion.h1>
                 <motion.span
-                  className="text-xl md:text-2xl text-gray-300 font-light tracking-wider"
+                  className="text-xl md:text-2xl text-gray-300 font-light tracking-wider whitespace-nowrap"
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.1 }}
@@ -118,7 +118,7 @@ export default function HomePage() {
                   MOTOHIRO HATA
                 </motion.span>
                 <motion.p
-                  className="text-xl md:text-2xl mt-6 text-gray-200"
+                  className="text-xl md:text-2xl mt-6 text-gray-200 whitespace-nowrap"
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.2 }}
@@ -161,7 +161,7 @@ export default function HomePage() {
               >
                 <div className="flex flex-col items-center">
                   <motion.h1
-                    className="text-5xl md:text-7xl font-bold mb-2 bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent"
+                    className="text-5xl md:text-7xl font-bold mb-2 bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent whitespace-nowrap"
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
@@ -169,7 +169,7 @@ export default function HomePage() {
                     {t("home.title")}
                   </motion.h1>
                   <motion.span
-                    className="text-lg md:text-xl text-gray-300 font-light tracking-wider"
+                    className="text-lg md:text-xl text-gray-300 font-light tracking-wider whitespace-nowrap"
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.1 }}
@@ -177,7 +177,7 @@ export default function HomePage() {
                     MOTOHIRO HATA
                   </motion.span>
                   <motion.p
-                    className="text-lg md:text-xl mt-4 text-gray-200"
+                    className="text-lg md:text-xl mt-4 text-gray-200 whitespace-nowrap"
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
@@ -450,7 +450,7 @@ export default function HomePage() {
       </motion.section>
 
       {/* 吉他展示部分 - 第三屏 */}
-      <motion.section
+      {/* <motion.section
         ref={thirdSectionRef}
         className="relative h-screen overflow-hidden p-20"
         initial={{ opacity: 0, y: 100 }}
@@ -461,10 +461,10 @@ export default function HomePage() {
         transition={{ duration: 0.8, ease: "easeInOut" }}
       >
         <GuitarViewer />
-      </motion.section>
+      </motion.section> */}
 
       {/* Blender吉他展示部分 - 第四屏 */}
-      <motion.section
+      {/* <motion.section
         ref={fourthSectionRef}
         className="relative h-screen overflow-hidden p-20"
         initial={{ opacity: 0, y: 100 }}
@@ -475,7 +475,7 @@ export default function HomePage() {
         transition={{ duration: 0.8, ease: "easeInOut" }}
       >
         <BlenderGuitarViewer />
-      </motion.section>
+      </motion.section> */}
     </div>
   );
 }

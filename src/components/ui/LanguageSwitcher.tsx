@@ -4,8 +4,8 @@ import { useState } from "react";
 import { useLanguage } from "@/lib/language-context";
 
 const languages = [
-  { code: "ja", name: "日本語", flag: "🇯🇵" },
   { code: "zh", name: "中文", flag: "🇨🇳" },
+  { code: "ja", name: "日本語", flag: "🇯🇵" },
 ];
 
 interface LanguageSwitcherProps {
