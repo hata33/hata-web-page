@@ -3,7 +3,9 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import BlenderGuitarViewer from "@/components/three/BlenderGuitarViewer";
+import GlbGuitarViewer from "@/components/three/GlbGuitarViewer";
 import GuitarViewer from "@/components/three/GuitarViewer";
+import HeroGuitar from "@/components/three/HeroGuitar";
 import ThreeBackground from "@/components/three/ThreeBackground";
 import { LanguageLoader } from "@/components/ui/LanguageLoader";
 import { LanguageSwitcher } from "@/components/ui/LanguageSwitcher";
@@ -73,42 +75,127 @@ export default function HomePage() {
         <Navigation showLanguageSwitcher={true} transparent={true} />
       </div>
 
-      {/* 首屏内容 */}
-      <section className="relative min-h-screen flex items-center justify-center">
-        <div className="relative z-10 text-center px-4 pt-20">
-          <LanguageLoader
-            fallback={<div className="text-white">加载中...</div>}
+      {/* 首屏内容 - 左右布局 */}
+      <section className="relative min-h-screen flex items-center justify-center z-20">
+        {/* 桌面端左侧吉他组件 - 完全脱离文档流 */}
+        <div className="hidden lg:block">
+          <motion.div
+            className="fixed left-10 top-0 w-1/2 h-screen"
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
           >
+            <HeroGuitar />
+          </motion.div>
+        </div>
+
+        <div className="container mx-auto px-4 pt-20 lg:pl-[50%]">
+          {/* 桌面端文字内容 */}
+          <motion.div
+            className="hidden lg:block text-left"
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <LanguageLoader
+              fallback={<div className="text-white">加载中...</div>}
+            >
+              <div className="flex flex-col items-start">
+                <motion.h1
+                  className="text-6xl md:text-8xl font-bold mb-2 bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent"
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8 }}
+                >
+                  {t("home.title")}
+                </motion.h1>
+                <motion.span
+                  className="text-xl md:text-2xl text-gray-300 font-light tracking-wider"
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.1 }}
+                >
+                  MOTOHIRO HATA
+                </motion.span>
+                <motion.p
+                  className="text-xl md:text-2xl mt-6 text-gray-200"
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                >
+                  {t("home.subtitle")}
+                </motion.p>
+                <motion.button
+                  className="mt-8 bg-white/20 backdrop-blur-sm text-white px-8 py-3 rounded-full font-semibold hover:bg-white/30 transition-colors transform hover:scale-105 transition-transform border border-white/30"
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.4 }}
+                >
+                  {t("home.listen")}
+                </motion.button>
+              </div>
+            </LanguageLoader>
+          </motion.div>
+
+          {/* 移动端上下布局 */}
+          <div className="lg:hidden flex flex-col items-center">
+            {/* 移动端：吉他模型 */}
             <motion.div
-              className="flex flex-col items-center"
-              initial={{ opacity: 0, y: 30 }}
+              className="h-[50vh] w-full max-w-sm mb-8"
+              initial={{ opacity: 0, y: -30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <h1 className="text-6xl md:text-8xl font-bold mb-2 bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent">
-                {t("home.title")}
-              </h1>
-              <span className="text-xl md:text-2xl text-gray-300 font-light tracking-wider">
-                MOTOHIRO HATA
-              </span>
+              <HeroGuitar />
             </motion.div>
-            <motion.p
-              className="text-xl md:text-2xl mb-8 text-gray-200"
+
+            {/* 移动端：标题和文字 */}
+            <motion.div
+              className="text-center w-full"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              {t("home.subtitle")}
-            </motion.p>
-            <motion.button
-              className="bg-white/20 backdrop-blur-sm text-white px-8 py-3 rounded-full font-semibold hover:bg-white/30 transition-colors transform hover:scale-105 transition-transform border border-white/30"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-            >
-              {t("home.listen")}
-            </motion.button>
-          </LanguageLoader>
+              <LanguageLoader
+                fallback={<div className="text-white">加载中...</div>}
+              >
+                <div className="flex flex-col items-center">
+                  <motion.h1
+                    className="text-5xl md:text-7xl font-bold mb-2 bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent"
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8 }}
+                  >
+                    {t("home.title")}
+                  </motion.h1>
+                  <motion.span
+                    className="text-lg md:text-xl text-gray-300 font-light tracking-wider"
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.1 }}
+                  >
+                    MOTOHIRO HATA
+                  </motion.span>
+                  <motion.p
+                    className="text-lg md:text-xl mt-4 text-gray-200"
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.2 }}
+                  >
+                    {t("home.subtitle")}
+                  </motion.p>
+                  <motion.button
+                    className="mt-6 bg-white/20 backdrop-blur-sm text-white px-6 py-2 rounded-full font-semibold hover:bg-white/30 transition-colors transform hover:scale-105 transition-transform border border-white/30"
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.4 }}
+                  >
+                    {t("home.listen")}
+                  </motion.button>
+                </div>
+              </LanguageLoader>
+            </motion.div>
+          </div>
         </div>
 
         {/* 滚动提示 */}
