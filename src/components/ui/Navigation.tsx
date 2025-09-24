@@ -32,6 +32,7 @@ export function Navigation({
         { href: "/videos", label: t("navigation.videos") },
         { href: "/concerts", label: t("navigation.concerts") },
         { href: "/news", label: t("navigation.news") },
+        { href: "/lyrics", label: t("navigation.lyrics") },
         { href: "/contact", label: t("navigation.contact") },
       ]
     : [];

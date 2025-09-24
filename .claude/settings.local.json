@@ -24,7 +24,8 @@
       "Bash(tree:*)",
       "Bash(git add:*)",
       "Bash(git commit:*)",
-      "Bash(pnpm run format:*)"
+      "Bash(pnpm run format:*)",
+      "Bash(pnpm run clean:*)"
     ],
     "deny": [],
     "ask": []

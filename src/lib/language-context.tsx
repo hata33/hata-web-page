@@ -81,6 +81,7 @@ const messages = {
       videos: "MV",
       concerts: "ライブ",
       news: "ニュース",
+      lyrics: "歌詞",
       contact: "お問い合わせ",
     },
     home: {
@@ -262,6 +263,7 @@ const messages = {
       videos: "MV",
       concerts: "演唱会",
       news: "新闻动态",
+      lyrics: "歌词",
       contact: "联系我们",
     },
     home: {
