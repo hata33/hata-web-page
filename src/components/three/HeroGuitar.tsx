@@ -2,8 +2,8 @@
 
 import {
   Environment,
-  OrbitControls,
   Text,
+  TrackballControls,
   useProgress,
 } from "@react-three/drei";
 import { Canvas, useFrame, useLoader } from "@react-three/fiber";
@@ -52,9 +52,12 @@ function HeroGuitarModel({
     if (groupRef.current) {
       springAnimation.current.active = true;
       springAnimation.current.rotation = {
-        x: groupRef.current.rotation.x,
-        y: groupRef.current.rotation.y,
-        z: groupRef.current.rotation.z,
+        x: 0,
+        y: 0,
+        z: 0,
+        // x: groupRef.current.rotation.x,
+        // y: groupRef.current.rotation.y,
+        // z: groupRef.current.rotation.z,
       };
       springAnimation.current.velocity = { x: 0, y: 0, z: 0 };
     }
@@ -327,16 +330,16 @@ function HeroGuitarModel({
     return (
       <group ref={groupRef} position={position}>
         {/* 旋转的加载圆环 */}
-        <mesh rotation-x={Math.PI / 2}>
+        {/* <mesh rotation-x={Math.PI / 2}>
           <torusGeometry args={[0.8, 0.05, 16, 32]} />
           <meshBasicMaterial color="rgba(255, 255, 255, 0.3)" />
-        </mesh>
+        </mesh> */}
 
         {/* 进度点 */}
-        <mesh rotation-x={Math.PI / 2}>
+        {/* <mesh rotation-x={Math.PI / 2}>
           <sphereGeometry args={[0.1, 8, 8]} />
           <meshBasicMaterial color="rgba(255, 255, 255, 0.8)" />
-        </mesh>
+        </mesh> */}
 
         {/* 加载文字 */}
         <Text
@@ -386,11 +389,6 @@ function HeroGuitarScene() {
       {/* 环境光 */}
       <ambientLight intensity={0.4} />
 
-      {/* 主光源 */}
-      <pointLight position={[5, 5, 5]} intensity={1.2} color="#ffffff" />
-      <pointLight position={[-5, -5, 3]} intensity={0.8} color="#ffd700" />
-      <pointLight position={[0, 10, -3]} intensity={0.6} color="#ffb347" />
-
       {/* 聚光灯 */}
       <spotLight
         position={[3, 10, 3]}
@@ -413,30 +411,37 @@ function HeroGuitarScene() {
       {/* 环境反射 */}
       <Environment preset="studio" />
 
-      {/* 专业的相机控制 */}
-      <OrbitControls
+      {/* 专业的相机控制 - 修复无限旋转 */}
+      <TrackballControls
         ref={(controls) => {
           if (controls && typeof window !== "undefined") {
             (window as any).__heroGuitarControls = controls;
           }
         }}
         enableZoom={true}
-        enablePan={false} // 禁用平移，保持面向用户
+        enablePan={true}
         enableRotate={true}
-        autoRotate={!isInteracting}
-        autoRotateSpeed={0.5} // 调整自动旋转速度
+        autoRotate={false}
         minDistance={0.7}
         maxDistance={10}
+
+        // 丝滑拖拽关键参数
         enableDamping={true}
-        dampingFactor={0.1} // 适中的阻尼
-        rotateSpeed={1.0} // 旋转速度
-        zoomSpeed={0.6}
-        // 时钟效果的旋转约束 - 限制在水平面上旋转
-        minPolarAngle={Math.PI / 2} // 固定在水平面
-        maxPolarAngle={Math.PI / 2} // 固定在水平面
-        // 启用360度水平旋转
-        minAzimuthAngle={-Infinity}
-        maxAzimuthAngle={Infinity}
+        dampingFactor={0.05}        // 降低阻尼系数，更顺滑
+        dynamicDampingFactor={0.1}  // 动态阻尼，拖拽时更流畅
+
+        // 惯性效果
+        noRoll={false}              // 允许滚动惯性
+        noPan={false}               // 允许平移惯性
+
+        // 速度控制
+        rotateSpeed={0.8}           // 稍降低旋转速度
+        zoomSpeed={0.8}             // 稍降低缩放速度
+        panSpeed={0.8}              // 平移速度
+
+        // 平滑停止
+        staticMoving={false}        // 启用动态停止（更丝滑）
+
         // 交互事件处理
         onStart={() => setIsInteracting(true)}
         onEnd={() => setIsInteracting(false)}

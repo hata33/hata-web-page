@@ -76,11 +76,11 @@ export default function HomePage() {
       </div>
 
       {/* 首屏内容 - 左右布局 */}
-      <section className="relative min-h-screen flex items-center justify-center z-20">
+      <section className="relative min-h-screen flex items-center justify-center z-20 overflow-x-hidden·">
         {/* 桌面端左侧吉他组件 - 完全脱离文档流 */}
-        <div className="hidden lg:block">
+        <div className="hidden w-[60vw] h-screen lg:block">
           <motion.div
-            className="fixed left-10 top-0 w-1/2 h-screen"
+            className="top-0 w-[60vw] h-screen"
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
@@ -89,7 +89,7 @@ export default function HomePage() {
           </motion.div>
         </div>
 
-        <div className="container mx-auto px-4 lg:pl-[45%] lg:pr-[10%]">
+        <div className="container mx-auto px-4 lg:pr-[10%]">
           {/* 桌面端文字内容 */}
           <motion.div
             className="hidden lg:block text-left"

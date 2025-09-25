@@ -268,7 +268,7 @@ const messages = {
     },
     home: {
       title: "秦基博",
-      subtitle: "进入触动心灵的音乐世界",
+      subtitle: "进入HATA的音乐世界",
       listen: "聆听音乐",
       introduction: {
         title: "艺术家介绍",
