@@ -25,7 +25,8 @@
       "Bash(git add:*)",
       "Bash(git commit:*)",
       "Bash(pnpm run format:*)",
-      "Bash(pnpm run clean:*)"
+      "Bash(pnpm run clean:*)",
+      "Bash(pnpm add:*)"
     ],
     "deny": [],
     "ask": []

@@ -422,7 +422,7 @@ function HeroGuitarScene() {
         enablePan={true}
         enableRotate={true}
         autoRotate={false}
-        minDistance={0.7}
+        minDistance={3}
         maxDistance={10}
 
         // 丝滑拖拽关键参数
@@ -457,6 +457,10 @@ export default function HeroGuitar() {
         camera={{ position: [0, 0, 6], fov: 50 }}
         style={{
           background: "transparent",
+        }}
+        gl={{
+          alpha: true, // 启用透明度
+          antialias: true
         }}
       >
         <HeroGuitarScene />

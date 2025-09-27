@@ -1,481 +1,157 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
-import BlenderGuitarViewer from "@/components/three/BlenderGuitarViewer";
-import GlbGuitarViewer from "@/components/three/GlbGuitarViewer";
-import GuitarViewer from "@/components/three/GuitarViewer";
-import HeroGuitar from "@/components/three/HeroGuitar";
-import ThreeBackground from "@/components/three/ThreeBackground";
-import { LanguageLoader } from "@/components/ui/LanguageLoader";
-import { LanguageSwitcher } from "@/components/ui/LanguageSwitcher";
+import GSAPShowcase from "@/components/animation/GSAPShowcase";
+import ArtistIntroduction from "@/components/home/ArtistIntroduction";
+import ConcertExperience from "@/components/home/ConcertExperience";
+import GSAPScrollSection from "@/components/home/GSAPScrollSection";
+import HeroSection from "@/components/home/HeroSection";
+import InteractiveTimeline from "@/components/home/InteractiveTimeline";
+import MusicShowcase from "@/components/home/MusicShowcase";
+import NewsUpdates from "@/components/home/NewsUpdates";
+import PoetrySection from "@/components/home/PoetrySection";
+import VideoGallery from "@/components/home/VideoGallery";
 import { Navigation } from "@/components/ui/Navigation";
-import { useLanguage } from "@/lib/language-context";
 
 export default function HomePage() {
-  const { t } = useLanguage();
-  const [showSecondSection, setShowSecondSection] = useState(false);
-  const [showThirdSection, setShowThirdSection] = useState(false);
-  const [showFourthSection, setShowFourthSection] = useState(false);
-
-  const secondSectionRef = useRef<HTMLDivElement>(null);
-  const thirdSectionRef = useRef<HTMLDivElement>(null);
-  const fourthSectionRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observerOptions = {
-      root: null,
-      rootMargin: "-10% 0px -10% 0px", // 当元素进入视口中部时触发
-      threshold: 0.1,
-    };
-
-    const observerCallback = (entries: IntersectionObserverEntry[]) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          if (entry.target === secondSectionRef.current) {
-            setShowSecondSection(true);
-          }
-          if (entry.target === thirdSectionRef.current) {
-            setShowThirdSection(true);
-          }
-          if (entry.target === fourthSectionRef.current) {
-            setShowFourthSection(true);
-          }
-        }
-      });
-    };
-
-    const observer = new IntersectionObserver(
-      observerCallback,
-      observerOptions,
-    );
-
-    if (secondSectionRef.current) {
-      observer.observe(secondSectionRef.current);
-    }
-    if (thirdSectionRef.current) {
-      observer.observe(thirdSectionRef.current);
-    }
-    if (fourthSectionRef.current) {
-      observer.observe(fourthSectionRef.current);
-    }
-
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
-
   return (
     <div className="relative">
-      {/* Three.js 背景特效 - 仅在首页显示 */}
-      <ThreeBackground />
-
       {/* 导航菜单 */}
-      <div className="absolute top-0 left-0 right-0 z-30">
+      <div className="fixed top-0 left-0 right-0 z-50">
         <Navigation showLanguageSwitcher={true} transparent={true} />
       </div>
 
-      {/* 首屏内容 - 左右布局 */}
-      <section className="relative min-h-screen flex items-center justify-center z-20 overflow-x-hidden·">
-        {/* 桌面端左侧吉他组件 - 完全脱离文档流 */}
-        <div className="hidden w-[60vw] h-screen lg:block">
-          <motion.div
-            className="top-0 w-[60vw] h-screen"
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <HeroGuitar />
-          </motion.div>
-        </div>
+      {/* 第九屏：诗歌展示 */}
+      <PoetrySection />
+      {/* 第一屏：英雄区域 */}
+      <HeroSection />
 
-        <div className="container mx-auto px-4 lg:pr-[10%]">
-          {/* 桌面端文字内容 */}
-          <motion.div
-            className="hidden lg:block text-left"
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            <LanguageLoader
-              fallback={<div className="text-white">加载中...</div>}
-            >
-              <div className="flex flex-col items-start">
-                <motion.h1
-                  className="text-5xl md:text-7xl lg:text-8xl font-bold mb-2 bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent whitespace-nowrap"
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8 }}
-                >
-                  {t("home.title")}
-                </motion.h1>
-                <motion.span
-                  className="text-xl md:text-2xl text-gray-300 font-light tracking-wider whitespace-nowrap"
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.1 }}
-                >
-                  MOTOHIRO HATA
-                </motion.span>
-                <motion.p
-                  className="text-xl md:text-2xl mt-6 text-gray-200 whitespace-nowrap"
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                >
-                  {t("home.subtitle")}
-                </motion.p>
-                <motion.button
-                  className="mt-8 bg-white/20 backdrop-blur-sm text-white px-8 py-3 rounded-full font-semibold hover:bg-white/30 transition-colors transform hover:scale-105 transition-transform border border-white/30"
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.4 }}
-                >
-                  {t("home.listen")}
-                </motion.button>
-              </div>
-            </LanguageLoader>
-          </motion.div>
+      {/* 第二屏：艺术家介绍 */}
+      <ArtistIntroduction />
 
-          {/* 移动端上下布局 */}
-          <div className="lg:hidden flex flex-col items-center">
-            {/* 移动端：吉他模型 */}
-            <motion.div
-              className="h-[50vh] w-full max-w-sm mb-8"
-              initial={{ opacity: 0, y: -30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              <HeroGuitar />
-            </motion.div>
+      {/* 第三屏：音乐展示 */}
+      <MusicShowcase />
 
-            {/* 移动端：标题和文字 */}
-            <motion.div
-              className="text-center w-full"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              <LanguageLoader
-                fallback={<div className="text-white">加载中...</div>}
-              >
-                <div className="flex flex-col items-center">
-                  <motion.h1
-                    className="text-5xl md:text-7xl font-bold mb-2 bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent whitespace-nowrap"
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8 }}
-                  >
-                    {t("home.title")}
-                  </motion.h1>
-                  <motion.span
-                    className="text-lg md:text-xl text-gray-300 font-light tracking-wider whitespace-nowrap"
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.1 }}
-                  >
-                    MOTOHIRO HATA
-                  </motion.span>
-                  <motion.p
-                    className="text-lg md:text-xl mt-4 text-gray-200 whitespace-nowrap"
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.2 }}
-                  >
-                    {t("home.subtitle")}
-                  </motion.p>
-                  <motion.button
-                    className="mt-6 bg-white/20 backdrop-blur-sm text-white px-6 py-2 rounded-full font-semibold hover:bg-white/30 transition-colors transform hover:scale-105 transition-transform border border-white/30"
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.4 }}
-                  >
-                    {t("home.listen")}
-                  </motion.button>
-                </div>
-              </LanguageLoader>
-            </motion.div>
-          </div>
-        </div>
+      {/* 第四屏：交互式时间线 */}
+      <InteractiveTimeline />
 
-        {/* 滚动提示 */}
-        <motion.div
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 1 }}
-        >
-          <div className="animate-bounce">
-            <svg
-              className="w-6 h-6 text-white/60"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M19 14l-7 7m0 0l-7-7m7 7V3"
-              />
-            </svg>
-          </div>
-        </motion.div>
-      </section>
+      {/* 第五屏：视频画廊 */}
+      <VideoGallery />
 
-      {/* 艺术家介绍部分 */}
-      <motion.section
-        ref={secondSectionRef}
-        className="relative min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 overflow-hidden"
-        initial={{ opacity: 0, y: 100 }}
-        animate={{
-          opacity: showSecondSection ? 1 : 0,
-          y: showSecondSection ? 0 : 100,
-        }}
-        transition={{ duration: 0.8, ease: "easeInOut" }}
+      {/* 第六屏：演唱会体验 */}
+      <ConcertExperience />
+
+      {/* 第七屏：最新动态 */}
+      <NewsUpdates />
+
+      {/* 第八屏：GSAP 动画展示 */}
+      <GSAPShowcase />
+
+
+
+      {/* 更多屏幕可以继续添加 */}
+      {/* <GSAPScrollSection
+        className="bg-gradient-to-br from-green-400 via-blue-500 to-purple-600"
+        animationType="scale"
+        index={8}
       >
-        {/* 装饰性背景元素 */}
-        <motion.div
-          className="absolute top-20 left-10 w-72 h-72 bg-gradient-to-r from-blue-200 to-purple-200 rounded-full blur-3xl opacity-30"
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 2, delay: 0.5 }}
-        />
-        <motion.div
-          className="absolute bottom-20 right-10 w-96 h-96 bg-gradient-to-r from-pink-200 to-blue-200 rounded-full blur-3xl opacity-30"
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 2, delay: 0.8 }}
-        />
-
-        <div className="container mx-auto px-4 py-20 relative z-10">
-          <div className="max-w-7xl mx-auto">
-            <LanguageLoader
-              fallback={<div className="text-center">加载中...</div>}
-            >
-              {/* 标题区域 */}
-              <motion.div
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-center mb-20"
-              >
-                <motion.h2
-                  className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent"
-                  initial={{ backgroundPosition: "0% 50%" }}
-                  animate={{
-                    backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-                  }}
-                  transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-                >
-                  {t("home.introduction.title")}
-                </motion.h2>
-                <motion.p
-                  className="text-xl md:text-2xl text-gray-600"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.8, delay: 0.4 }}
-                >
-                  {t("home.introduction.subtitle")}
-                </motion.p>
-              </motion.div>
-
-              {/* 主要内容区域 */}
-              <div className="grid lg:grid-cols-2 gap-16 items-center">
-                {/* 左侧：艺术家介绍 */}
-                <motion.div
-                  initial={{ opacity: 0, x: -50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.8, delay: 0.6 }}
-                  className="space-y-8"
-                >
-                  <motion.div
-                    className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl p-10 border border-white/20"
-                    whileHover={{
-                      scale: 1.02,
-                      boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
-                    }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <motion.div
-                      className="flex items-center mb-6"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ duration: 0.6, delay: 0.8 }}
-                    >
-                      <div className="w-3 h-12 bg-gradient-to-b from-blue-500 to-purple-500 rounded-full mr-4"></div>
-                      <h3 className="text-3xl font-bold text-gray-800">
-                        {t("home.introduction.title")}
-                      </h3>
-                    </motion.div>
-                    <motion.p
-                      className="text-lg text-gray-700 leading-relaxed text-justify"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ duration: 0.8, delay: 1 }}
-                    >
-                      {t("home.introduction.description")}
-                    </motion.p>
-
-                    {/* 装饰性音符图标 */}
-                    <motion.div
-                      className="flex justify-center mt-8 space-x-4"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ duration: 0.6, delay: 1.2 }}
-                    >
-                      {["♪", "♫", "♪"].map((note, index) => (
-                        <motion.span
-                          key={index}
-                          className="text-2xl text-purple-400"
-                          animate={{
-                            y: [0, -10, 0],
-                            rotate: [0, 5, -5, 0],
-                          }}
-                          transition={{
-                            duration: 2,
-                            delay: index * 0.3,
-                            repeat: Infinity,
-                          }}
-                        >
-                          {note}
-                        </motion.span>
-                      ))}
-                    </motion.div>
-                  </motion.div>
-                </motion.div>
-
-                {/* 右侧：成就展示 */}
-                <motion.div
-                  initial={{ opacity: 0, x: 50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.8, delay: 0.8 }}
-                  className="space-y-8"
-                >
-                  {t("home.introduction.achievements").map(
-                    (achievement: any, index: number) => (
-                      <motion.div
-                        key={index}
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: 1 + index * 0.3 }}
-                        className="group"
-                      >
-                        <motion.div
-                          className="bg-gradient-to-r from-white/90 to-blue-50/80 backdrop-blur-sm rounded-2xl shadow-xl p-8 border border-white/30"
-                          whileHover={{
-                            scale: 1.03,
-                            background:
-                              "linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(219,234,254,0.9) 100%)",
-                          }}
-                          transition={{ duration: 0.3 }}
-                        >
-                          <div className="flex items-center mb-4">
-                            <motion.div
-                              className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg mr-3 flex items-center justify-center"
-                              initial={{ scale: 0 }}
-                              animate={{ scale: 1 }}
-                              transition={{
-                                duration: 0.4,
-                                delay: 1.2 + index * 0.3,
-                              }}
-                            >
-                              <span className="text-white font-bold text-sm">
-                                {index + 1}
-                              </span>
-                            </motion.div>
-                            <h4 className="text-2xl font-bold text-gray-800 group-hover:text-blue-600 transition-colors">
-                              {achievement.title}
-                            </h4>
-                          </div>
-
-                          <div className="flex flex-wrap gap-3">
-                            {achievement.items.map(
-                              (item: any, itemIndex: number) => (
-                                <motion.span
-                                  key={itemIndex}
-                                  className="bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100 text-blue-800 px-4 py-2 rounded-full text-sm font-medium shadow-sm border border-white/50"
-                                  initial={{ opacity: 0, scale: 0.8 }}
-                                  animate={{ opacity: 1, scale: 1 }}
-                                  transition={{
-                                    duration: 0.4,
-                                    delay: 1.4 + index * 0.3 + itemIndex * 0.1,
-                                  }}
-                                  whileHover={{
-                                    scale: 1.05,
-                                    background:
-                                      "linear-gradient(135deg, rgb(219,234,254) 0%, rgb(233,213,255) 50%, rgb(252,231,243) 100%)",
-                                  }}
-                                >
-                                  {item}
-                                </motion.span>
-                              ),
-                            )}
-                          </div>
-                        </motion.div>
-                      </motion.div>
-                    ),
-                  )}
-                </motion.div>
-              </div>
-
-              {/* 底部装饰元素 */}
-              <motion.div
-                className="flex justify-center mt-16"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.8, delay: 2 }}
-              >
-                <div className="flex space-x-2">
-                  {[...Array(5)].map((_, index) => (
-                    <motion.div
-                      key={index}
-                      className="w-2 h-2 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full"
-                      animate={{
-                        scale: [1, 1.5, 1],
-                        opacity: [0.4, 1, 0.4],
-                      }}
-                      transition={{
-                        duration: 2,
-                        delay: index * 0.2,
-                        repeat: Infinity,
-                      }}
-                    />
-                  ))}
-                </div>
-              </motion.div>
-            </LanguageLoader>
-          </div>
+        <div className="text-center text-white">
+          <h2 className="text-6xl font-bold mb-6">创意无限</h2>
+          <p className="text-xl max-w-2xl mx-auto">
+            探索更多可能，体验前所未有的视觉盛宴
+          </p>
         </div>
-      </motion.section>
+      </GSAPScrollSection>
 
-      {/* 吉他展示部分 - 第三屏 */}
-      {/* <motion.section
-        ref={thirdSectionRef}
-        className="relative h-screen overflow-hidden p-20"
-        initial={{ opacity: 0, y: 100 }}
-        animate={{
-          opacity: showThirdSection ? 1 : 0,
-          y: showThirdSection ? 0 : 100,
-        }}
-        transition={{ duration: 0.8, ease: "easeInOut" }}
+      <GSAPScrollSection
+        className="bg-gradient-to-br from-orange-400 via-red-500 to-pink-600"
+        animationType="fadeInLeft"
+        index={9}
       >
-        <GuitarViewer />
-      </motion.section> */}
+        <div className="text-center text-white">
+          <h2 className="text-6xl font-bold mb-6 animate-stagger">激情燃烧</h2>
+          <p className="text-xl max-w-2xl mx-auto animate-stagger">
+            用音乐点燃心灵，用创意改变世界
+          </p>
+        </div>
+      </GSAPScrollSection>
 
-      {/* Blender吉他展示部分 - 第四屏 */}
-      {/* <motion.section
-        ref={fourthSectionRef}
-        className="relative h-screen overflow-hidden p-20"
-        initial={{ opacity: 0, y: 100 }}
-        animate={{
-          opacity: showFourthSection ? 1 : 0,
-          y: showFourthSection ? 0 : 100,
-        }}
-        transition={{ duration: 0.8, ease: "easeInOut" }}
+      <GSAPScrollSection
+        className="bg-gradient-to-br from-teal-400 via-cyan-500 to-blue-600"
+        animationType="fadeInRight"
+        index={10}
       >
-        <BlenderGuitarViewer />
-      </motion.section> */}
+        <div className="text-center text-white">
+          <h2 className="text-6xl font-bold mb-6 animate-stagger">梦想成真</h2>
+          <p className="text-xl max-w-2xl mx-auto animate-stagger">
+            每一个音符都承载着对未来的期许
+          </p>
+        </div>
+      </GSAPScrollSection>
+
+      <GSAPScrollSection
+        className="bg-gradient-to-br from-purple-400 via-indigo-500 to-blue-600"
+        animationType="parallax"
+        index={11}
+      >
+        <div className="text-center text-white">
+          <h2 className="text-6xl font-bold mb-6 animate-stagger">无限可能</h2>
+          <p className="text-xl max-w-2xl mx-auto animate-stagger">
+            在音乐的世界里，一切皆有可能
+          </p>
+        </div>
+      </GSAPScrollSection>
+
+      <GSAPScrollSection
+        className="bg-gradient-to-br from-pink-400 via-rose-500 to-red-600"
+        animationType="rotate"
+        index={12}
+      >
+        <div className="text-center text-white">
+          <h2 className="text-6xl font-bold mb-6 animate-stagger">温暖人心</h2>
+          <p className="text-xl max-w-2xl mx-auto animate-stagger">
+            用旋律传递爱与希望的力量
+          </p>
+        </div>
+      </GSAPScrollSection>
+
+      <GSAPScrollSection
+        className="bg-gradient-to-br from-yellow-400 via-orange-500 to-red-600"
+        animationType="fadeInUp"
+        index={13}
+      >
+        <div className="text-center text-white">
+          <h2 className="text-6xl font-bold mb-6 animate-stagger">阳光明媚</h2>
+          <p className="text-xl max-w-2xl mx-auto animate-stagger">
+            如同阳光般温暖的音乐作品
+          </p>
+        </div>
+      </GSAPScrollSection>
+
+      <GSAPScrollSection
+        className="bg-gradient-to-br from-green-400 via-teal-500 to-blue-600"
+        animationType="scale"
+        index={14}
+      >
+        <div className="text-center text-white">
+          <h2 className="text-6xl font-bold mb-6 animate-stagger">生生不息</h2>
+          <p className="text-xl max-w-2xl mx-auto animate-stagger">
+            音乐的力量永不停止，创作的灵感源源不断
+          </p>
+        </div>
+      </GSAPScrollSection>
+
+      <GSAPScrollSection
+        className="bg-gradient-to-br from-indigo-400 via-purple-500 to-pink-600"
+        animationType="fadeInUp"
+        index={15}
+      >
+        <div className="text-center text-white">
+          <h2 className="text-6xl font-bold mb-6 animate-stagger">感谢聆听</h2>
+          <p className="text-xl max-w-2xl mx-auto animate-stagger">
+            期待与您在下一次音乐之旅中相遇
+          </p>
+        </div>
+      </GSAPScrollSection> */}
     </div>
   );
 }
